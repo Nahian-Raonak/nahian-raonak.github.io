@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> <!-- structured single-file -->
+    <meta charset="UTF-8"> <!-- single-file structured -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive -->
     <title>Nahian Raonak | Product Manager</title>
     <style>
@@ -149,116 +149,87 @@
         .project-tags { display: flex; flex-wrap: wrap; gap: 10px; }
         .tag { padding: 6px 14px; background: rgba(99, 102, 241, 0.2); border-radius: 20px; font-size: 12px; border: 1px solid var(--primary); }
 
-        /* Achievements - Redesigned */
-        .achievements {
+        /* Agile Leadership & Community (new) */
+        .leadership {
             position: relative;
             border-radius: 30px;
             overflow: hidden;
+            background: linear-gradient(135deg, rgba(99,102,241,0.10), rgba(168,85,247,0.10));
+            padding-top: 20px;
+            padding-bottom: 20px;
         }
-        .achievements::before {
-            /* Gradient mesh backdrop that matches site palette */
-            content: "";
-            position: absolute;
-            inset: 0;
-            background:
-              radial-gradient(60% 60% at 15% 20%, rgba(99,102,241,0.25), transparent 60%),
-              radial-gradient(50% 50% at 85% 30%, rgba(168,85,247,0.25), transparent 60%),
-              radial-gradient(40% 40% at 50% 85%, rgba(236,72,153,0.18), transparent 60%);
-            filter: blur(40px);
-            opacity: 0.8;
-            z-index: 0;
+        .leadership .section-title { margin-bottom: 30px; }
+        .leadership-intro {
+            max-width: 900px;
+            margin: 0 auto 30px auto;
+            text-align: center;
+            opacity: 0.95;
+            font-size: 18px;
+            line-height: 1.7;
         }
-        .achievement-hero {
-            position: relative;
-            height: clamp(320px, 52vw, 560px);
-            border-radius: 24px;
-            overflow: hidden;
+        .leader-grid {
             display: grid;
-            place-items: center;
-            z-index: 1;
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 22px;
         }
-        /* Image layers */
-        .achievement-hero .img-layer {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
-            transition: transform 5s ease, filter 0.8s ease, opacity 0.8s ease;
-            will-change: transform, filter, opacity;
-        }
-        .achievement-hero .img-base {
-            filter: grayscale(35%) contrast(1) saturate(0.9);
-            opacity: 1;
-            transform: scale(1.02);
-        }
-        .achievement-hero .img-hover {
-            opacity: 0;
-            transform: scale(1.08);
-            filter: grayscale(0) saturate(1.1);
-        }
-        /* Color reveal mask on hover */
-        .achievement-hero::after {
-            content: "";
-            position: absolute; inset: -20%;
-            background: conic-gradient(from 220deg, rgba(99,102,241,0.35), rgba(168,85,247,0.35), rgba(236,72,153,0.35), rgba(99,102,241,0.35));
-            mix-blend-mode: soft-light;
-            opacity: 0;
-            transition: opacity 0.6s ease, transform 1.2s ease;
-            transform: rotate(0deg) scale(1);
-            pointer-events: none;
-        }
-        /* Shine streak */
-        .achievement-hero .shine {
-            content: "";
-            position: absolute;
-            top: -150%;
-            left: -50%;
-            width: 60%;
-            height: 400%;
-            background: linear-gradient(120deg, transparent 35%, rgba(255,255,255,0.25) 50%, transparent 65%);
-            transform: rotate(20deg);
-            opacity: 0;
-            transition: opacity 0.6s ease, transform 1.2s ease;
-            pointer-events: none;
-        }
-        /* Hover effects */
-        .achievement-hero:hover .img-base { transform: scale(1.06); filter: grayscale(10%) saturate(1); opacity: 0.85; }
-        .achievement-hero:hover .img-hover { opacity: 1; transform: scale(1.02); }
-        .achievement-hero:hover::after { opacity: 1; transform: rotate(20deg) scale(1.05); }
-        .achievement-hero:hover .shine { opacity: 1; transform: rotate(20deg) translateX(140%); }
-
-        /* Frosted overlay card */
-        .achievement-overlay {
-            position: relative; z-index: 2; max-width: 1000px; width: min(92%, 1000px);
-            margin: 0 auto;
-            padding: clamp(16px, 3vw, 28px);
-            background: rgba(15, 15, 35, 0.55);
+        .leader-card {
+            position: relative;
+            background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.12);
             border-radius: 16px;
-            backdrop-filter: blur(10px) saturate(120%);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
         }
-        .achievement-title {
-            font-size: clamp(24px, 4vw, 42px);
-            font-weight: 900;
-            letter-spacing: 0.4px;
-            margin-bottom: 10px;
-            text-align: center;
-            line-height: 1.15;
-            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .leader-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(99,102,241,0.25);
+            border-color: rgba(99,102,241,0.45);
         }
-        .achievement-subtitle {
-            font-size: clamp(14px, 2.2vw, 18px);
-            opacity: 0.95;
-            text-align: center;
+        .leader-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; /* unified tile window */ /* consistent window [10] */
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
+        .leader-media img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* show full image without cropping [11] */
+            object-position: center;
+            display: block;
+        }
+        .leader-body {
+            padding: 18px 18px 20px 18px;
+        }
+        .leader-title {
+            font-size: 18px;
+            font-weight: 700;
             margin-bottom: 6px;
         }
-        .achievement-meta {
-            font-size: clamp(12px, 1.8vw, 14px);
-            opacity: 0.8;
-            text-align: center;
-            margin-bottom: 0;
+        .leader-meta {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-bottom: 10px;
+        }
+        .leader-text {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        /* subtle gradient top edge */
+        .leader-card::after {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            opacity: 0.6;
         }
 
         /* Contact */
@@ -280,11 +251,14 @@
             border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.3s ease;
         }
         .contact-link:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3); border-color: var(--primary); }
+
         /* Footer */
         footer { text-align: center; padding: 40px; opacity: 0.6; }
-        /* Reveal */
+
+        /* Reveal animation */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
         /* Responsive */
         @media (max-width: 768px) {
             .cursor, .cursor-dot { display: none; } body { cursor: auto; }
@@ -308,7 +282,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
-                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#leadership">Agile Leadership</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -442,21 +416,52 @@
         </div>
     </section>
 
-    <!-- Achievements (Redesigned) -->
-    <section id="achievements" class="achievements reveal">
-        <h2 class="section-title">Achievements</h2>
-        <div class="achievement-hero" aria-label="Regional Scrum Gathering Dhaka 2025 banner">
-            <!-- Base image (default) -->
-            <img class="img-layer img-base" src="assets/images/achievements/banner.jpeg" alt="Hosting Regional Scrum Gathering Dhaka 2025 — banner">
-            <!-- Hover image (revealed subtly on hover) -->
-            <img class="img-layer img-hover" src="assets/images/achievements/nra.jpeg" alt="On stage as Host at Regional Scrum Gathering Dhaka 2025">
-            <!-- Shine streak -->
-            <div class="shine" aria-hidden="true"></div>
-            <!-- Frosted overlay content -->
-            <div class="achievement-overlay">
-                <div class="achievement-title">Host — Regional Scrum Gathering Dhaka 2025</div>
-                <p class="achievement-subtitle">Welcomed global agile leaders, facilitated keynote transitions, and amplified community voices across a high‑impact regional stage.</p>
-                <p class="achievement-meta">Role: Event Host • Focus: Agile Culture, Community, Facilitation • Year: 2025</p>
+    <!-- Agile Leadership & Community (replaces Achievements) -->
+    <section id="leadership" class="leadership reveal">
+        <h2 class="section-title">Agile Leadership & Community</h2>
+        <p class="leadership-intro">Active in Scrum and Agile communities—hosting gatherings, organizing events, and facilitating sessions that connect practitioners and amplify impact.</p>
+        <div class="leader-grid">
+            <!-- Example tiles: replace src with your files -->
+            <div class="leader-card">
+                <div class="leader-media">
+                    <img src="assets/images/achievements/banner.jpeg" alt="Hosting Regional Scrum Gathering Dhaka 2025">
+                </div>
+                <div class="leader-body">
+                    <div class="leader-title">Host, Regional Scrum Gathering Dhaka 2025</div>
+                    <div class="leader-meta">Role: Event Host • Theme: Agile Culture • Year: 2025</div>
+                    <p class="leader-text">Opened the conference, facilitated keynote transitions, and engaged with speakers and community leaders across a high‑energy program.</p>
+                </div>
+            </div>
+            <div class="leader-card">
+                <div class="leader-media">
+                    <img src="assets/images/achievements/nra.jpeg" alt="On-stage facilitation and community engagement">
+                </div>
+                <div class="leader-body">
+                    <div class="leader-title">On‑Stage Facilitation</div>
+                    <div class="leader-meta">Community • Leadership • Engagement</div>
+                    <p class="leader-text">Guided sessions and panels to highlight real-world agile practices, creating space for collaboration and learning.</p>
+                </div>
+            </div>
+            <!-- Add more cards as needed -->
+            <div class="leader-card">
+                <div class="leader-media">
+                    <img src="assets/images/achievements/community-01.jpg" alt="Agile meetup leadership">
+                </div>
+                <div class="leader-body">
+                    <div class="leader-title">Agile Meetups & Workshops</div>
+                    <div class="leader-meta">Organizer • Facilitator</div>
+                    <p class="leader-text">Regularly organize and facilitate meetups and clinics to strengthen practitioner networks and share practical tools.</p>
+                </div>
+            </div>
+            <div class="leader-card">
+                <div class="leader-media">
+                    <img src="assets/images/achievements/community-02.jpg" alt="Scrum community collaboration">
+                </div>
+                <div class="leader-body">
+                    <div class="leader-title">Scrum Community Collaborations</div>
+                    <div class="leader-meta">Scrum • Coaching • Practice</div>
+                    <p class="leader-text">Partner with communities to co-create sessions focused on product discovery, delivery excellence, and team health.</p>
+                </div>
             </div>
         </div>
     </section>
