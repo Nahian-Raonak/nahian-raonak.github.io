@@ -811,71 +811,199 @@
         }
         
         /* Stats Grid - More impactful */
-        .stats-grid {
+        .certifications-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--space-lg);
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: var(--space-2xl);
             margin-top: var(--space-2xl);
         }
         
-        .stat-card {
+        .cert-card {
+            position: relative;
             background: var(--bg-card);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-xl);
+            border-radius: var(--radius-xl);
+            padding: var(--space-2xl) var(--space-xl);
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
+            cursor: default;
         }
         
-        .stat-card::before {
+        .cert-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
             transform: scaleX(0);
-            transition: transform 0.4s ease;
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
+        .cert-card:hover {
+            transform: translateY(-16px) scale(1.03);
+            box-shadow: 0 32px 64px rgba(14, 165, 233, 0.35);
+            border-color: rgba(14, 165, 233, 0.5);
         }
         
-        .stat-card:hover::before {
+        .cert-card:hover::before {
             transform: scaleX(1);
         }
         
-        .stat-icon {
-            font-size: 48px;
-            margin-bottom: var(--space-md);
-            filter: grayscale(0.3);
+        .cert-badge-wrapper {
+            margin-bottom: var(--space-xl);
+            display: flex;
+            justify-content: center;
         }
         
-        .stat-number {
+        .cert-badge-circle {
+            position: relative;
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(139, 92, 246, 0.08));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border: 3px solid rgba(14, 165, 233, 0.2);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+        }
+        
+        .cert-card:hover .cert-badge-circle {
+            transform: rotate(360deg) scale(1.1);
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(139, 92, 246, 0.15));
+            box-shadow: 0 16px 48px rgba(14, 165, 233, 0.4);
+        }
+        
+        .cert-badge-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(14, 165, 233, 0.3));
+            transition: all 0.6s ease;
+        }
+        
+        .cert-card:hover .cert-badge-image {
+            filter: drop-shadow(0 8px 24px rgba(14, 165, 233, 0.5)) brightness(1.1);
+        }
+        
+        .cert-verified {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 900;
+            border: 4px solid var(--dark-900);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.5);
+            animation: verifiedPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes verifiedPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 4px 16px rgba(16, 185, 129, 0.5);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 4px 24px rgba(16, 185, 129, 0.8);
+            }
+        }
+        
+        .cert-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cert-acronym {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 48px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            font-size: 52px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: var(--space-sm);
+            letter-spacing: -0.02em;
+            animation: gradientShift 4s ease infinite;
         }
         
-        .stat-label {
-            font-size: 15px;
-            color: var(--text-secondary);
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+        
+        .cert-full-name {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+        
+        .cert-issuer {
+            font-size: 13px;
+            color: var(--text-muted);
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1.5px;
+            opacity: 0.8;
         }
         
+        .cert-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.6s ease;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+        
+        .cert-card:hover .cert-glow {
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .certifications-section {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            
+            .cert-badge-circle {
+                width: 140px;
+                height: 140px;
+                padding: 16px;
+            }
+            
+            .cert-acronym {
+                font-size: 44px;
+            }
+            
+            .cert-full-name {
+                font-size: 16px;
+            }
+        }
         /* Skills - More visual */
         .skills-container {
             display: grid;
@@ -1605,26 +1733,35 @@
             </div>
         </div>
         
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon">🚀</div>
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Products Launched</div>
+         <div class="certifications-section">
+            <div class="cert-card">
+                <div class="cert-badge-wrapper">
+                    <div class="cert-badge-circle">
+                        <img src="assets/images/cspo-badge.png" alt="CSPO Badge" class="cert-badge-image">
+                        <div class="cert-verified">✓</div>
+                    </div>
+                </div>
+                <div class="cert-content">
+                    <div class="cert-acronym">CSPO</div>
+                    <div class="cert-full-name">Certified Scrum Product Owner®</div>
+                    <div class="cert-issuer">Scrum Alliance</div>
+                </div>
+                <div class="cert-glow"></div>
             </div>
-            <div class="stat-card">
-                <div class="stat-icon">💼</div>
-                <div class="stat-number">8+</div>
-                <div class="stat-label">Years Experience</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">📈</div>
-                <div class="stat-number">200%</div>
-                <div class="stat-label">Average ROI</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">👥</div>
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Cross-functional Teams</div>
+            
+            <div class="cert-card">
+                <div class="cert-badge-wrapper">
+                    <div class="cert-badge-circle">
+                        <img src="assets/images/csm-badge.png" alt="CSM Badge" class="cert-badge-image">
+                        <div class="cert-verified">✓</div>
+                    </div>
+                </div>
+                <div class="cert-content">
+                    <div class="cert-acronym">CSM</div>
+                    <div class="cert-full-name">Certified ScrumMaster®</div>
+                    <div class="cert-issuer">Scrum Alliance</div>
+                </div>
+                <div class="cert-glow"></div>
             </div>
         </div>
     </section>
