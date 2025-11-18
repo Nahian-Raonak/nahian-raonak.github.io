@@ -729,21 +729,17 @@
             50% { border-radius: 60% 40% 50% 50% / 40% 50% 60% 50%; }
         }
         
-        .profile-image-inner {
-            width: 100%;
-            height: 100%;
-            background: var(--dark-900);
-            border-radius: inherit;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 120px;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    transition: transform 0.3s ease;
+}
+
+.profile-image-wrapper:hover .profile-image {
+    transform: scale(1.05);
+}
         
         .profile-stats {
             display: grid;
@@ -1555,7 +1551,7 @@
             <div class="about-visual">
                 <div class="profile-card">
                     <div class="profile-image-wrapper">
-                        <div class="profile-image-inner">NR</div>
+                        <img src="assets/images/profile.png" alt="Nahian Raonak - Product Manager" class="profile-image">
                     </div>
                     <div class="profile-stats">
                         <div class="profile-stat">
