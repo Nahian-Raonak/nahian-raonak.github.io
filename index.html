@@ -243,7 +243,8 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
         }
-.nav-resume {
+        
+        .nav-resume {
             padding: 10px 20px;
             background: transparent;
             border: 1.5px solid var(--primary);
@@ -350,45 +351,6 @@
             position: relative;
         }
         
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 28px;
-            background: rgba(14, 165, 233, 0.08);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(14, 165, 233, 0.2);
-            border-radius: var(--radius-full);
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--primary);
-            margin-bottom: var(--space-lg);
-            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-badge::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.15), transparent);
-            transform: translateX(-100%);
-            animation: badgeShimmer 3s infinite;
-        }
-        
-        .badge-text {
-            position: relative;
-            z-index: 1;
-            text-transform: uppercase;
-        }
-        
-        @keyframes badgeShimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
-        }
-        
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
             font-size: clamp(3rem, 10vw, 7rem);
@@ -427,15 +389,7 @@
             font-weight: 700;
         }
         
-        .hero-description {
-            font-size: 18px;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto var(--space-xl);
-            line-height: 1.7;
-            animation: slideUp 1.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
- .hero-mantra {
+        .hero-mantra {
             font-size: 24px;
             color: var(--text-primary);
             margin-bottom: var(--space-xl);
@@ -462,16 +416,6 @@
             color: var(--primary);
             opacity: 0.6;
             font-size: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-mantra {
-                font-size: 20px;
-            }
-            
-            .mantra-arrow {
-                margin: 0 var(--space-sm);
-            }
         }
         
         .typing-text {
@@ -699,7 +643,7 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: var(--radius-xl);
-            padding: var(--space-xl);
+            padding: var(--space-lg);
             position: relative;
             overflow: hidden;
         }
@@ -714,13 +658,14 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
         }
         
+        /* Profile image wrapper */
         .profile-image-wrapper {
             width: 100%;
             aspect-ratio: 1;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             border-radius: var(--radius-lg);
-            padding: 4px;
-            margin-bottom: var(--space-lg);
+            padding: 3px;
+            margin-bottom: var(--space-md);
             animation: profileFloat 6s ease-in-out infinite;
         }
         
@@ -730,43 +675,103 @@
         }
         
         .profile-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: inherit;
-    transition: transform 0.3s ease;
-}
-
-.profile-image-wrapper:hover .profile-image {
-    transform: scale(1.05);
-}
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: inherit;
+            transition: transform 0.3s ease;
+        }
         
+        .profile-image-wrapper:hover .profile-image {
+            transform: scale(1.05);
+        }
+        
+        /* Modern Compact Stats Grid - 2x3 layout */
         .profile-stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--space-md);
+            gap: 10px;
+            margin-top: var(--space-md);
         }
         
         .profile-stat {
-            text-align: center;
-            padding: var(--space-md);
-            background: rgba(14, 165, 233, 0.05);
-            border-radius: var(--radius-md);
-            border: 1px solid rgba(14, 165, 233, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 8px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.03), rgba(139, 92, 246, 0.03));
+            border: 1px solid rgba(14, 165, 233, 0.08);
+            border-radius: 10px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .profile-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .profile-stat:hover::before {
+            left: 100%;
+        }
+        
+        .profile-stat:hover {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(139, 92, 246, 0.08));
+            border-color: rgba(14, 165, 233, 0.2);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
         }
         
         .profile-stat-value {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2px;
+            letter-spacing: -0.5px;
         }
         
         .profile-stat-label {
-            font-size: 13px;
+            font-size: 10px;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
+            line-height: 1.2;
+            text-align: center;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        /* Alternate stat colors for visual interest */
+        .profile-stat:nth-child(odd) .profile-stat-value {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .profile-stat:nth-child(even) .profile-stat-value {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* About Content Alignment */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .about-content h3 {
@@ -778,18 +783,27 @@
             letter-spacing: -0.02em;
         }
         
-        .about-content p {
-            font-size: 17px;
-            line-height: 1.8;
+        /* About Description - Equal styling for all paragraphs */
+        .about-description p {
+            font-size: 16px;
+            line-height: 1.75;
             color: var(--text-secondary);
-            margin-bottom: var(--space-md);
+            text-align: justify;
+            text-justify: inter-word;
+            margin-bottom: var(--space-sm);
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+        
+        .about-description p:last-child {
+            margin-bottom: 0;
         }
         
         .expertise-tags {
             display: flex;
             flex-wrap: wrap;
             gap: var(--space-sm);
-            margin-top: var(--space-lg);
+            margin-top: var(--space-md);
         }
         
         .expertise-tag {
@@ -983,27 +997,6 @@
             transform: translate(-50%, -50%) scale(1.5);
         }
         
-        /* Responsive */
-        @media (max-width: 768px) {
-            .certifications-section {
-                grid-template-columns: 1fr;
-                gap: var(--space-xl);
-            }
-            
-            .cert-badge-circle {
-                width: 140px;
-                height: 140px;
-                padding: 16px;
-            }
-            
-            .cert-acronym {
-                font-size: 44px;
-            }
-            
-            .cert-full-name {
-                font-size: 16px;
-            }
-        }
         /* Skills - More visual */
         .skills-container {
             display: grid;
@@ -1569,16 +1562,26 @@
             section { padding: var(--space-2xl) var(--space-md); }
             
             .hero-title { font-size: 2.5rem; }
+            .hero-mantra { font-size: 20px; }
+            .mantra-arrow { margin: 0 var(--space-sm); }
             .section-title { font-size: 2rem; }
             
-            .stats-grid { grid-template-columns: 1fr; }
+            .certifications-section { grid-template-columns: 1fr; gap: var(--space-xl); }
+            .cert-badge-circle { width: 140px; height: 140px; padding: 16px; }
+            .cert-acronym { font-size: 44px; }
+            .cert-full-name { font-size: 16px; }
+            
+            .profile-stats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .profile-stat { padding: 10px 6px; }
+            .profile-stat-value { font-size: 18px; }
+            .profile-stat-label { font-size: 9px; }
+            
+            .about-description p { text-align: left; hyphens: none; -webkit-hyphens: none; }
+            
             .skills-container { grid-template-columns: 1fr; }
             .leadership-grid { grid-template-columns: 1fr; }
             
-            .project-metrics {
-                grid-template-columns: 1fr;
-                gap: var(--space-sm);
-            }
+            .project-metrics { grid-template-columns: 1fr; gap: var(--space-sm); }
             
             .cta-buttons { flex-direction: column; width: 100%; }
             .btn { width: 100%; justify-content: center; }
@@ -1631,7 +1634,6 @@
             </div>
         </div>
         <div class="hero-content">
-            
             <h1 class="hero-title">
                 <span class="gradient-text">Nahian Raonak</span>
             </h1>
@@ -1683,20 +1685,28 @@
                     </div>
                     <div class="profile-stats">
                         <div class="profile-stat">
-                            <div class="profile-stat-value">8+</div>
-                            <div class="profile-stat-label">Years</div>
+                            <div class="profile-stat-value">7+</div>
+                            <div class="profile-stat-label">Years Experience</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">30+</div>
+                            <div class="profile-stat-label">Products Delivered</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">5</div>
+                            <div class="profile-stat-label">Continents</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value">99%</div>
+                            <div class="profile-stat-label">On-Time Delivery</div>
                         </div>
                         <div class="profile-stat">
                             <div class="profile-stat-value">50+</div>
-                            <div class="profile-stat-label">Products</div>
+                            <div class="profile-stat-label">Global Stakeholders</div>
                         </div>
                         <div class="profile-stat">
-                            <div class="profile-stat-value">200%</div>
-                            <div class="profile-stat-label">Avg ROI</div>
-                        </div>
-                        <div class="profile-stat">
-                            <div class="profile-stat-value">15+</div>
-                            <div class="profile-stat-label">Teams Led</div>
+                            <div class="profile-stat-value">95%</div>
+                            <div class="profile-stat-label">Satisfaction Rate</div>
                         </div>
                     </div>
                 </div>
@@ -1704,23 +1714,20 @@
             
             <div class="about-content">
                 <h3>Building Products That Matter</h3>
-                <p>
-                    As a Senior Product Manager and Business Analyst, I specialize in transforming ambiguous 
-                    business challenges into clear, actionable product strategies. My approach combines deep 
-                    analytical thinking with creative problem-solving to deliver solutions that resonate with 
-                    users and drive business growth.
-                </p>
-                <p>
-                    With expertise spanning GovTech, FinTech, SaaS, and Enterprise solutions, I've successfully 
-                    led cross-functional teams through complex product lifecycles—from discovery and roadmapping 
-                    to delivery and optimization. My strength lies in stakeholder alignment, data-driven decision 
-                    making, and creating frameworks that scale.
-                </p>
-                <p>
-                    Beyond product delivery, I'm passionate about building agile cultures and empowering teams 
-                    to do their best work. As an active community leader, I organize and facilitate events that 
-                    strengthen practitioner networks and advance the discipline.
-                </p>
+                <div class="about-description">
+                    <p>
+                        Senior Business Analyst and Product Manager with 5+ years of professional experience and over 7 years of total experience including freelance projects, building and scaling 30+ digital products across GovTech, FinTech, SaaS, and Enterprise platforms spanning 5 continents.
+                    </p>
+                    <p>
+                        From microfinance apps to nationwide tax systems and enterprise ERPs, I've led products through discovery, roadmapping, and optimization across GovTech, FinTech, and SaaS platforms globally.
+                    </p>
+                    <p>
+                        My strength: stakeholder alignment, data-driven decisions, and execution excellence. I bring structure to ambiguity, enabling teams to move fast with precision—maintaining 99% on-time delivery and 95% satisfaction.
+                    </p>
+                    <p>
+                        Beyond shipping products, I build strong product cultures through community events, mentoring, and advocacy—because great products come from empowered teams.
+                    </p>
+                </div>
                 
                 <div class="expertise-tags">
                     <span class="expertise-tag">Product Strategy</span>
@@ -1733,7 +1740,8 @@
             </div>
         </div>
         
-         <div class="certifications-section">
+        <!-- Certifications -->
+        <div class="certifications-section">
             <div class="cert-card">
                 <div class="cert-badge-wrapper">
                     <div class="cert-badge-circle">
@@ -2006,6 +2014,7 @@
                     </p>
                     <div class="project-metrics">
                         <div class="project-metric">
+                            <div class="project-metric-value">5
                             <div class="project-metric-value">5M+</div>
                             <div class="project-metric-label">Transactions</div>
                         </div>
@@ -2257,7 +2266,7 @@
         animateCursor();
         
         // Cursor hover effects
-        const hoverElements = document.querySelectorAll('a, button, .btn, .project-card, .stat-card, .skill-category, .leader-card');
+        const hoverElements = document.querySelectorAll('a, button, .btn, .project-card, .stat-card, .skill-category, .leader-card, .cert-card');
         hoverElements.forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
@@ -2388,40 +2397,6 @@
                 orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
             });
         });
-        
-        // Add smooth reveal for stats
-        const stats = document.querySelectorAll('.stat-number');
-        let statsAnimated = false;
-        
-        const animateStats = () => {
-            const aboutSection = document.getElementById('about');
-            const aboutTop = aboutSection.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (aboutTop < windowHeight - 100 && !statsAnimated) {
-                stats.forEach(stat => {
-                    const target = stat.textContent;
-                    const isPercentage = target.includes('%');
-                    const isPlus = target.includes('+');
-                    const number = parseInt(target.replace(/\D/g, ''));
-                    let current = 0;
-                    const increment = number / 50;
-                    
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= number) {
-                            stat.textContent = target;
-                            clearInterval(timer);
-                        } else {
-                            stat.textContent = Math.floor(current) + (isPercentage ? '%' : isPlus ? '+' : '');
-                        }
-                    }, 30);
-                });
-                statsAnimated = true;
-            }
-        };
-        
-        window.addEventListener('scroll', animateStats);
         
         // Performance optimization: Intersection Observer for animations
         if ('IntersectionObserver' in window) {
